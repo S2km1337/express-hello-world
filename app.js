@@ -20,9 +20,9 @@ const html = `
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { height: 100%; }
       body {
-        font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, sans-serif;
-        background: #f7f7f4;
-        color: #1c1c1a;
+        font-family: Georgia, "Times New Roman", "Songti SC", "STSong", "Noto Serif SC", serif;
+        background: #f0eee6;
+        color: #23211d;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -31,17 +31,24 @@ const html = `
       }
       main { text-align: center; padding: 24px; animation: fade 1.2s ease both; }
       @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-      .greeting { font-size: 15px; letter-spacing: .5em; text-indent: .5em; color: #8a8a84; margin-bottom: 28px; }
-      .time {
-        font-size: clamp(72px, 17vw, 168px);
-        font-weight: 200;
-        line-height: 1;
-        letter-spacing: .02em;
-        font-variant-numeric: tabular-nums;
+      .greeting {
+        font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        font-size: 14px; letter-spacing: .55em; text-indent: .55em;
+        color: #97907e; margin-bottom: 30px;
       }
-      .time .sec { font-size: .38em; color: #a3a39c; font-weight: 300; }
-      .rule { width: 48px; height: 1px; background: #d8d8d2; margin: 34px auto 26px; }
-      .date { font-size: 16px; letter-spacing: .3em; text-indent: .3em; color: #6f6f6a; }
+      .time {
+        font-size: clamp(76px, 17vw, 170px);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: .01em;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .time .sec { font-size: .34em; color: #c15f3c; }
+      .rule { width: 44px; height: 1px; background: #d9d3bf; margin: 36px auto 26px; }
+      .date {
+        font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        font-size: 15px; letter-spacing: .32em; text-indent: .32em; color: #7d7767;
+      }
     </style>
   </head>
   <body>
