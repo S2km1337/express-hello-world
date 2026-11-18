@@ -81,7 +81,9 @@ const html = `
       }
       @keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
       .gap { flex: 0 0 auto; width: .2em; }
-      .sec { display: flex; align-items: flex-start; font-size: .34em; color: #c15f3c; padding-top: .12em; }
+      .sec { display: flex; align-items: flex-start; font-size: .34em; color: #c15f3c; }
+      .sec .cell { height: 2.941em; }
+      .sec .strip span { height: 2.941em; align-items: flex-end; padding-bottom: .42em; }
       .rule { width: 44px; height: 1px; background: #d9d3bf; margin: 36px auto 26px; }
       .date {
         font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -108,12 +110,13 @@ const html = `
       var greetingEl = document.getElementById("greeting");
       var dateEl = document.getElementById("date");
 
-      function makeCell(parent, delay) {
+      function makeCell(parent, delay, step) {
         var cell = document.createElement("span");
         cell.className = "cell";
         var strip = document.createElement("span");
         strip.className = "strip";
         strip.style.transitionDelay = delay + "ms";
+        strip._step = step;
         for (var i = 0; i < 10; i++) {
           var s = document.createElement("span");
           s.textContent = i;
@@ -132,25 +135,26 @@ const html = `
       }
 
       // Cascade: rightmost digit rolls first, the rest follow in 40ms steps.
+      // Seconds live in full-height cells, bottom-aligned to the main baseline.
       var strips = [];
-      strips.push(makeCell(timeEl, 200));
-      strips.push(makeCell(timeEl, 160));
+      strips.push(makeCell(timeEl, 200, 1));
+      strips.push(makeCell(timeEl, 160, 1));
       makeStatic(timeEl, ":", "colon");
-      strips.push(makeCell(timeEl, 120));
-      strips.push(makeCell(timeEl, 80));
+      strips.push(makeCell(timeEl, 120, 1));
+      strips.push(makeCell(timeEl, 80, 1));
       makeStatic(timeEl, "", "gap");
       var secWrap = document.createElement("span");
       secWrap.className = "sec";
       timeEl.appendChild(secWrap);
-      strips.push(makeCell(secWrap, 40));
-      strips.push(makeCell(secWrap, 0));
+      strips.push(makeCell(secWrap, 40, 2.941));
+      strips.push(makeCell(secWrap, 0, 2.941));
 
       var current = [-1, -1, -1, -1, -1, -1];
       function setDigit(idx, val, snap) {
         if (current[idx] === val) return;
         current[idx] = val;
         if (snap) mainEl.classList.add("noanim");
-        strips[idx].style.transform = "translate3d(0," + (-val) + "em,0)";
+        strips[idx].style.transform = "translate3d(0," + (-val * strips[idx]._step) + "em,0)";
         if (snap) { void mainEl.offsetWidth; mainEl.classList.remove("noanim"); }
       }
 
