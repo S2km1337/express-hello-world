@@ -41,20 +41,20 @@ const html = `
         color: #97907e; margin-bottom: 30px;
       }
       .time {
-        font-size: clamp(76px, 17vw, 170px);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        font-size: clamp(72px, 16vw, 160px);
         font-weight: 400;
         line-height: 1;
         font-variant-numeric: lining-nums tabular-nums;
         font-feature-settings: "lnum" 1, "tnum" 1;
-        white-space: nowrap;
         user-select: none;
       }
       .cell {
-        display: inline-block;
-        width: .58em; height: 1em;
+        flex: 0 0 auto;
+        width: .64em; height: 1em;
         overflow: hidden;
-        vertical-align: top;
-        text-align: center;
       }
       .strip {
         display: block;
@@ -63,16 +63,25 @@ const html = `
         transition-duration: .68s;
         transition-timing-function: cubic-bezier(.25,.8,.24,1);
       }
-      .strip span { display: block; height: 1em; line-height: 1; }
+      .strip span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 1em;
+        line-height: 1;
+      }
       .noanim .strip { transition: none !important; }
       .colon {
-        display: inline-block; width: .3em; text-align: center;
+        flex: 0 0 auto;
+        width: .3em; height: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         animation: breathe 2s ease-in-out infinite;
       }
       @keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
-      .sec { font-size: .34em; color: #c15f3c; }
-      .sec .cell { width: .58em; }
-      .gap { display: inline-block; width: .22em; }
+      .gap { flex: 0 0 auto; width: .2em; }
+      .sec { display: flex; align-items: flex-start; font-size: .34em; color: #c15f3c; padding-top: .12em; }
       .rule { width: 44px; height: 1px; background: #d9d3bf; margin: 36px auto 26px; }
       .date {
         font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
