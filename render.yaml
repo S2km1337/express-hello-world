@@ -4,7 +4,7 @@ services:
     runtime: node
     plan: free
     buildCommand: yarn install --frozen-lockfile
-    startCommand: node app.js
+    startCommand: sh start.sh
     envVars:
       - key: NODE_ENV
         value: production
